@@ -1,0 +1,64 @@
+# .html
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+   
+        <div class="fade__in"></div>
+        <div class="fade__in"></div>
+        <div class="fade__in"></div>
+        <div class="fade__in"></div>
+        <div class="fade__in"></div>
+        <div class="fade__in"></div>
+   
+    <script src="./script.js"></script>
+</body>
+
+</html>
+
+
+# .css
+
+.fade__in {
+    height: 400px;
+    background: grey;
+    -webkit-transition-delay: .3s;
+    -o-transition-delay: .3s;
+    transition-delay: .3s;
+    -webkit-transition: .4s;
+    -o-transition: .4s;
+    transition: .4s;
+    opacity: 0;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.in__view {
+    opacity: 1;
+}
+
+# .js
+
+let elementsArray = document.querySelectorAll(".fade__in");
+console.log(elementsArray);
+window.addEventListener('scroll', fadeIn);
+function fadeIn() {
+    for (var i = 0; i < elementsArray.length; i++) {
+        var elem = elementsArray[i]
+        var distInView = elem.getBoundingClientRect().top - window.innerHeight + 20;
+        if (distInView < 0) {
+            elem.classList.add("in__view");
+        } else {
+            elem.classList.remove("in__view");
+        }
+    }
+}
+fadeIn();
